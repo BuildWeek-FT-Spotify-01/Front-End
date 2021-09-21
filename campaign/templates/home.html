@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Kickstarter Prediction - {{ title }}</title>
+        <!--link rel="stylesheet" href="https://unpkg.com/picnic"/-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+    </head>
+    <body>
+        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; height: 30vh; cursor: default;">
+            <div style="width: 100%; cursor: inherit;"><div style="width: 100%; height: 100%;">
+                <img src="static/img/Spotify.jpg"
+                style="display: block; object-fit: cover; border-radius: 20px; width: 100%; height: 30vh; opacity: 1; object-position: center 50%;">
+            </div>
+        </div>
+        <br/>
+        <h2>Welcome to our Spotify Reccomendation App</h2>
+        <br/>
+        This is a tool to give users recommended songs based on their current taste in Music.
+        <br/><br/><br/>
+        <form>
+            <div class="row">
+                <div class="three columns">
+                    <a href='/model_info'><input type="home-button" value= "More Info"></a>
+                </div>
+                <div class="three columns">
+                    <a href="/input"><input type="home-button" value= "Song Recommender"></a>  
+                </div>
+                <div class="three columns">
+                    <a href="/about"><input type="home-button" value= "About Us"></a>
+                </div>
+            </div>
+        <br/>
+        </form>
+        <h4> Click an artist below to get a similar recommended song:</h4>
+        <div class="container2">
+            <div class="row2">
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+            </div>
+        </div> 
+        <div class="container2">
+            <div class="row2">
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="row2">
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+                <div class="square">
+                    <img src="static/img/pentatonix.jpg">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
