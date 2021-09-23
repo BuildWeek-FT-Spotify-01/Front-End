@@ -47,7 +47,7 @@ def create_app():
         arr = query_db(index, cur)
 
         # Load the model and find nearest neighbors
-        model = joblib.load(open(MODEL, 'rb'))
+        model = joblib.load(MODEL)
         distances, indexes = model.kneighbors(X=arr.reshape(1, -1), n_neighbors=6)
         recommendations= recommended_songs(indexes, distances, cur)
         
@@ -86,7 +86,7 @@ def create_app():
             arr = query_db(index, cur)
 
             # Load the model and find nearest neighbors
-            model = joblib.load(open(MODEL, 'rb'))
+            model = joblib.load(MODEL)
             distances, indexes = model.kneighbors(X=arr.reshape(1, -1), n_neighbors=6)
             recommendations= recommended_songs(indexes, distances, cur)
             
