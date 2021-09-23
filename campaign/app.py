@@ -1,9 +1,12 @@
+from os import getenv
 from datetime import timedelta
 import pickle
 from flask import Flask, render_template, request
 import pickle
 import pandas as pd
-from .extra_data import subcategories, categories
+import psycopg2
+from .queries import query_db, recommended_songs
+from .queries import DB_PASSWORD, DB_USER, CONNECT, MODEL
 
 
 def create_app():
@@ -16,7 +19,7 @@ def create_app():
 
     @APP.route("/input")
     def input():
-        return render_template('input.html', title='Input', categories=categories, subcategories=subcategories)
+        return render_template('input.html', title='Input')
 
     
     @APP.route("/about")
@@ -29,53 +32,67 @@ def create_app():
         return render_template("model.html", title="Model Info")
 
 
+    @APP.route("/recommend", methods=['POST'])
+    def recommend():
+        
+        # Open a connection to the SQL Database
+        conn = psycopg2.connect(CONNECT, user=DB_USER, password=DB_PASSWORD)
+        cur = conn.cursor()
+
+        # Get the index
+        index = request.form["numbers"]
+        
+        # Use the index value to get your feature array 
+        arr = query_db(index, cur)
+
+        # Load the model and find nearest neighbors
+        model = pickle.load(open(MODEL, 'rb'))
+        distances, indexes = model.kneighbors(X=arr.reshape(1, -1), n_neighbors=6)
+        recommendations= recommended_songs(indexes, distances, cur)
+        
+        # Closes out connection
+        cur.close()
+        conn.close()
+
+        return render_template('predict.html', df= [recommendations.to_html(index=False, justify='center', classes='table table-striped')], title='Recommendations')
+
     @APP.route("/predict", methods=['POST'])
     def predict():
-        data0 = {'id': [9999999999],
-            'Primary Category':[request.values['Primary Category']],
-            'Campaign Goal':[request.values['Campaign Goal']],
-            'Staff Pick':[0],
-            'Description Length':[request.values['Description Length']],
-            'Campaign Length':[request.values['Campaign Length']],
-            'Subcategory':[request.values['Subcategory']],
-            'Holiday Season':[request.values['Holiday Season']],
-            'Campaign Launch Length':[request.values['Campaign Launch Length']],
-            'Amount Pledged':[request.values['Product Name Length']]
+        
+        inputs = {'artist':request.values['artist'],
+            'song':request.values['song'],   
         }
-        data1 = {'id': [9999999999],
-            'Primary Category':[request.values['Primary Category']],
-            'Campaign Goal':[request.values['Campaign Goal']],
-            'Staff Pick':[1],
-            'Description Length':[request.values['Description Length']],
-            'Campaign Length':[request.values['Campaign Length']],
-            'Subcategory':[request.values['Subcategory']],
-            'Holiday Season':[request.values['Holiday Season']],
-            'Campaign Launch Length':[request.values['Campaign Launch Length']],
-            'Amount Pledged':[request.values['Product Name Length']]
-        }
-        df0 = pd.DataFrame(data0)
-        df0.set_index('id', drop=True, inplace=True)
-        df1 = pd.DataFrame(data1)
-        df1.set_index('id', drop=True, inplace=True)
-        predictor = pickle.load(open('xgb.pkl', 'rb'))
-        prediciton0 = predictor.predict(df0)
-        prediciton1 = predictor.predict(df1)
-        if prediciton0 == 1 and prediciton1 == 1:
-            pred = ", this campaign is likely to succeed"
-        elif prediciton0 == 1 and prediciton1 == 0:
-            pred = ", this campaign is more likely to succeed without getting picked by kickstarter staff"
-        elif prediciton0 == 0 and prediciton1 == 1:
-            pred = """:<br/>
-- If you don't get a kickstarter badge, your campaign is likely to fail<br/>
-- If you get a kickstarter badge, your campaign is likely to succeed<br/><br/>
-<a href='https://www.kickstarter.com/blog/introducing-projects-we-love-badges' target="_blank">
-Click here to learn about kickstarter badges"""
-            """this campaign is more likely to succeed if you get picked by kickstarter staff.<br/>
-                <a href='https://www.kickstarter.com/blog/introducing-projects-we-love-badges' target="_blank">
-                Click here to find out more</a>"""
+
+        # Open a connection to the SQL Database
+        conn = psycopg2.connect(CONNECT, user=DB_USER, password=DB_PASSWORD)
+        cur = conn.cursor()
+
+        # Get the artist query
+        artist = inputs['artist'].lower()
+        name = inputs['song'].lower()
+
+        index_query = "SELECT index FROM target WHERE name LIKE \'%" + str(name) + "%\' AND artists LIKE \'%" + str(artist) + "%\'"
+
+        # Execute the query
+        cur.execute(index_query)
+        index = cur.fetchone()
+
+        if index == None:
+            return render_template('error.html')
         else:
-            pred = """, this campaign is likely to fail, see our 
-            <a href=\"/model_info\">model description</a> to learn about what makes a campaign successful."""
-        return render_template('predict.html', pred=pred, title='Prediction')
+
+            # Use the index value to get your feature array 
+            arr = query_db(index, cur)
+
+            # Load the model and find nearest neighbors
+            model = pickle.load(open(MODEL, 'rb'))
+            distances, indexes = model.kneighbors(X=arr.reshape(1, -1), n_neighbors=6)
+            recommendations= recommended_songs(indexes, distances, cur)
+            
+            # Closes out connection
+            cur.close()
+            conn.close()
+            
+            return render_template('predict.html', df= [recommendations.to_html(index=False, justify='center', classes='table table-striped')], title='Recommendations')
 
     return APP

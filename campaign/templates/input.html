@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>Kickstarter Prediction - {{ title }}</title> 
+        <title>Spotify Song Recommender - {{ title }}</title> 
         <!--link rel="stylesheet" href="https://unpkg.com/picnic"/-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
@@ -15,66 +15,24 @@
             </div></div>
         </div>
         <h2>Enter your data</h2>
-        Fill out the form below to make a prediction on your campaign:<br/><br/>
+        Enter your song and artist name to find similar songs:<br/><br/>
         <form action="/predict" method="post">
             <div class="row">
-                <div class="six columns">
-                    <label for="Primary Category">Primary Category</label>
-                    <select name="Primary Category", id='Primary Category'>
-                        {% for category in categories %}
-                        <option value="{{ category }}">{{ category }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="four columns">
+                    <label for="artist">Artist Name:</label>
+                    <input type="text" name="artist" id='artist' placeholder="Artist"><br/>
                 </div>
-                <div class="six columns">
-                    <label for="Subcategory">Subcategory</label>
-                    <select name="Subcategory", id="Subcategory">
-                        {% for subcategory in subcategories %}
-                        <option value="{{ subcategory }}">{{ subcategory }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="four columns">
+                    <label for="song">Song Title:</label>
+                    <input type="text" name="song" id='song' placeholder="Song Title">
                 </div>
             </div>
-            <div class="row">
-                <div class="six columns">
-                    <label for="desclen">Description Length</label>
-                    <input type="text" name="Description Length" id='desclen' onkeyup="success()" placeholder="How many words is your description?">
-                </div>
-                <div class="six columns">
-                    <label for="goal">Enter the goal in USD</label>
-                    <input type="text" name="Campaign Goal" id='goal' onkeyup="success()" placeholder="Enter the goal in dollars">
-                </div>
-            </div>
-            <div class="row">
-                <div class="six columns">
-                    <label for="campaign">Enter duration of campaign in days</label>
-                    <input type="text" name="Campaign Length" onkeyup="success()" id='campaign' placeholder="Campaign length (number of days)">
-                </div>
-                <div class="six columns">
-                    <label for="holiday">Will this be in a holiday season</label>
-                    <input type="text" name="Holiday Season" id='holiday' onkeyup="success()" placeholder="0 if not, 1 if it will">
-                </div>
-            </div>
-            <div class="row">
-                <div class="six columns">
-                    <label for="cll">How long from first posting to launching the campaign?</label>
-            <input type="text" name="Campaign Launch Length" id='cll' onkeyup="success()" placeholder="Enter number of days to launch"><br/>
-                </div>
-                <div class="six columns">
-                    <label for="holiday">Product Name Length</label>
-                    <input type="text" name="Product Name Length" id='pnl' onkeyup="success()" placeholder="How many words is your product name?">
-                </div>
-            </div>
-            <input type="submit" id="predict_button" value="Predict campaign success" disabled='disabled'>
+            <input type="submit" id="predict_button" value="Give me songs">
             <script type="text/javascript">
                 function success() {
-                    if(document.getElementById("goal").value===""
-                        || document.getElementById("pnl").value===""
-                        || document.getElementById("desclen").value===""
-                        || document.getElementById("campaign").value===""
-                        || document.getElementById("holiday").value===""
-                        || document.getElementById("cll").value==="") { 
-                            document.getElementById('predict_button').disabled = true; 
+                    if(document.getElementById("artist").value===""
+                        || document.getElementById("song").value===""){
+                             document.getElementById('predict_button').disabled = true; 
                         } else { 
                             document.getElementById('predict_button').disabled = false;
                         }

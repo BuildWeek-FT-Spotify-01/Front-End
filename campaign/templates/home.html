@@ -3,7 +3,7 @@
 <html>
 
     <head>
-        <title>Kickstarter Prediction - {{ title }}</title>
+        <title>Spotify Song Recommender - {{ title }}</title>
         <!--link rel="stylesheet" href="https://unpkg.com/picnic"/-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <br/>
-        <h2>Welcome to our Spotify Reccomendation App</h2>
+        <h2>Welcome to our Spotify Recommendation App</h2>
         <br/>
         This is a tool to give users recommended songs based on their current taste in Music.
         <br/><br/><br/>
@@ -38,39 +38,66 @@
         <div class="container2">
             <div class="row2">
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='88919'> 
+                        <input type="image" name="numbers" id='numbers' src="static/img/journey_app.jpg" alt="Submit">
+                    </form> 
                 </div>
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='664818'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/frank_app.jpg" alt="Submit">
+                    </form> 
                 </div>
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='928072'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/ptx_app.png" alt="Submit">
+                    </form> 
                 </div>
             </div>
         </div> 
         <div class="container2">
             <div class="row2">
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='891494'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/hc_app.jpg" alt="Submit">
+                    </form> 
                 </div>
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='18821'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/britney_app.jpg" alt="Submit">
+                    </form> 
                 </div>
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='356222'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/tk_app.jpg" alt="Submit">
+                    </form> 
                 </div>
             </div>
         </div>
         <div class="container2">
             <div class="row2">
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='973787'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/kol_app.jpg" alt="Submit">
+                    </form> 
                 </div>
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='785048'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/pentatonix.jpg" alt="Submit">
+                    </form> 
                 </div>
                 <div class="square">
-                    <img src="static/img/pentatonix.jpg">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='845189'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/muse_app.jpg" alt="Submit">
+                    </form> 
                 </div>
             </div>
         </div>

@@ -266,7 +266,7 @@ textarea,
 select {
   height: 38px;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #fff;
+  background-color: #26232f;
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
@@ -296,7 +296,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #33C3F0;
+  border: 1px solid #101010;
   outline: 0; }
 label,
 legend {
@@ -392,6 +392,16 @@ td:last-child {
   }
 }
 
+/* Image Animation
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#numbers {
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+#numbers:hover {opacity: 0.2;
+                background:#ffffff;}
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -428,6 +438,19 @@ form {
 .u-pull-left {
   float: left; }
 
+/* Fun
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#divContainer, #divResize { 
+  border: 1px #ffffff;
+  background: #FFFF99;
+  color: #101010; 
+  width: 120px; 
+  height: 120px; 
+  padding: 5px; 
+  margin: 5px; 
+  cursor: pointer; 
+  float: left 
+} 
 
 /* Misc
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
