@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Spotify Song Recommender - {{ title }}</title>
+        <!--link rel="stylesheet" href="https://unpkg.com/picnic"/-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+    </head>
+    <body>
+        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; height: 30vh; cursor: default;">
+            <div style="width: 100%; cursor: inherit;"><div style="width: 100%; height: 100%;">
+                <img src="static/img/Spotify.jpg"
+                style="display: block; object-fit: cover; border-radius: 0px; width: 100%; height: 30vh; opacity: 1; object-position: center 50%;">
+            </div></div>
+        </div>
+        <h1 class="code-line" data-line-start=0 data-line-end=1 style="text-align: center;"><a id="The_Model_0"></a>So, How Does this app Work?</h1>
+        <p class="has-line-data" data-line-start="1" data-line-end="2">In order to provide you, the user, with the best possible experience, we have incorporated a few different technologies. 
+            In this section of our page, we will explain how these work independently and how they come together. To begin, we have to understand how the data itself comes together.</p>
+        <img src="static/img/density.png" alt="Density Plot (Figure 1)" title="Density Plot (Figure 1)" style="margin-left: 5%;">
+        <p class="has-line-data" data-line-start="19" data-line-end="20">This is a density plot that outlines how the data is spread out in the dataset itself. 
+                Some data falls under what we call a "Normal Distribution", which is a fancy way of saying it looks symmetrical in the way the data "falls" onto the graph. 
+                We can also see some of this data is skewed(leaning towards) to the left and right. We will need to apply some normalization to this data to ensure even distribution across the board. 
+                Afterwards, our data is ready to be processed. Before we do that though, we want to ask the question. How does this data all work together?
+        </p>
+        <img src="static/img/Heatmap.png" alt="Heatmap (Figure 2)" title="Heatmap (Figure 2)" style="margin-left: 5%;">
+        <p class="has-line-data" data-line-start="19" data-line-end="20">Through these two graphics, you can see how it is the data we look at all comes together and also how it works independently.
+        </p>
+        <h1 class="code-line" data-line-start=0 data-line-end=1 style="text-align: center;"><a id="The_Model_0"></a>How Does the Model Work?</h1>
+        <img src="static/img/KNN.png" alt="KNN (Figure 3)" title="KNN (Figure 3)" style="margin-left: 5%;">
+        <p class="has-line-data" data-line-start="17" data-line-end="18">We use a model from the sklearn python library called the NearestNeighbors model. In order to make this model run quickly and 
+            efficiently, we house our data in it's own warehouse. This allows the model to access it without taking up too much of your processor's power. It takes in your input through the app and 
+            breaks it down into the metrics you see above. We can then query into the database and create a list of Euclidian distances and index positions for songs that are close in correlation.
+            From there, we can input the list we created above and query from the database the artist, song, and the correlation. This data is added to a DataFrame to make it look better to you, the user.
+            <a href="https://scikit-learn.org/stable/modules/neighbors.html">more on NearestNeighbors</a> 
+        </p>
+        <h1 class="code-line" data-line-start=0 data-line-end=1 style="text-align: center;"><a id="The_Model_0"></a>Conclusion</h1>
+        <p class="has-line-data" data-line-start="19" data-line-end="20">We as Devs, have your best interests in mind. We believe that everyone deserves free, unaquittaled access to developing 
+            their musical interests. We approached this project, wanting to live up to not only this mission statement, but to our users expectations of an accurate model, good visuals, 
+            and easy to digest content.
+        </p>
+        <p class="has-line-data" data-line-start="21" data-line-end="22">We appreciate you taking the time to view our page.</p>
+        <p class="has-line-data" data-line-start="23" data-line-end="24">-Devs</p>
+        <br/><br/>
+        <div style="text-align:center"><a href="/"><input type="submit" value="Return Home"></a></div>
+    </body>
+</html>

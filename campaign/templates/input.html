@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Spotify Song Recommender - {{ title }}</title> 
+        <!--link rel="stylesheet" href="https://unpkg.com/picnic"/-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+    </head>
+    <body>
+        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; height: 30vh; cursor: default;">
+            <div style="width: 100%; cursor: inherit;"><div style="width: 100%; height: 100%;">
+                <img src="static/img/Spotify.jpg"
+                style="display: block; object-fit: cover; border-radius: 0px; width: 100%; height: 30vh; opacity: 1; object-position: center 50%;">
+            </div></div>
+        </div>
+        <h2>Enter your data</h2>
+        Enter your song and artist name to find similar songs:<br/><br/>
+        <form action="/predict" method="post">
+            <div class="row">
+                <div class="four columns">
+                    <label for="artist">Artist Name:</label>
+                    <input type="text" name="artist" id='artist' placeholder="Artist"><br/>
+                </div>
+                <div class="four columns">
+                    <label for="song">Song Title:</label>
+                    <input type="text" name="song" id='song' placeholder="Song Title">
+                </div>
+            </div>
+            <input type="submit" id="predict_button" value="Give me songs">
+            <script type="text/javascript">
+                function success() {
+                    if(document.getElementById("artist").value===""
+                        || document.getElementById("song").value===""){
+                             document.getElementById('predict_button').disabled = true; 
+                        } else { 
+                            document.getElementById('predict_button').disabled = false;
+                        }
+                    }
+            </script>
+        </form>
+        <br/><br/>
+        <a href="/"><input type="submit" value="Return Home"></a>
+    </body>
+</html>

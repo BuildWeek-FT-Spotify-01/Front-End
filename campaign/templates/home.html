@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>Spotify Song Recommender - {{ title }}</title>
+        <!--link rel="stylesheet" href="https://unpkg.com/picnic"/-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+    </head>
+    <body>
+        <div style="position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; height: 30vh; cursor: default;">
+            <div style="width: 100%; cursor: inherit;"><div style="width: 100%; height: 100%;">
+                <img src="static/img/Spotify.jpg"
+                style="display: block; object-fit: cover; border-radius: 20px; width: 100%; height: 30vh; opacity: 1; object-position: center 50%;">
+            </div>
+        </div>
+        <br/>
+        <h2>Welcome to our Spotify Recommendation App</h2>
+        <br/>
+        This is a tool to give users recommended songs based on their current taste in Music.
+        <br/><br/><br/>
+        <form>
+            <div class="row">
+                <div class="three columns">
+                    <a href='/model_info'><input type="home-button" value= "More Info"></a>
+                </div>
+                <div class="three columns">
+                    <a href="/input"><input type="home-button" value= "Song Recommender"></a>  
+                </div>
+                <div class="three columns">
+                    <a href="/about"><input type="home-button" value= "About Us"></a>
+                </div>
+            </div>
+        <br/>
+        </form>
+        <h4> Click an artist below to get a similar recommended song:</h4>
+        <div class="container2">
+            <div class="row2">
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='88919'> 
+                        <input type="image" name="numbers" id='numbers' src="static/img/journey_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='664818'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/frank_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='928072'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/ptx_app.png" alt="Submit">
+                    </form> 
+                </div>
+            </div>
+        </div> 
+        <div class="container2">
+            <div class="row2">
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='891494'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/hc_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='18821'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/britney_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='356222'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/tk_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="row2">
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='973787'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/kol_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='785048'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/pentatonix.jpg" alt="Submit">
+                    </form> 
+                </div>
+                <div class="square">
+                    <form action="/recommend" method="post" id='formName' name='formName' onsubmit='redirect();return false;'>
+                        <input type='hidden' id='numbers' name='numbers' value='845189'>
+                        <input type="image" name="numbers" id='numbers' src="static/img/muse_app.jpg" alt="Submit">
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
