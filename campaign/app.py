@@ -3,6 +3,7 @@ from datetime import timedelta
 import pickle
 from flask import Flask, render_template, request
 import pickle
+import joblib
 import pandas as pd
 import psycopg2
 from .queries import query_db, recommended_songs
@@ -46,7 +47,7 @@ def create_app():
         arr = query_db(index, cur)
 
         # Load the model and find nearest neighbors
-        model = pickle.load(open(MODEL, 'rb'))
+        model = joblib.load(open(MODEL, 'rb'))
         distances, indexes = model.kneighbors(X=arr.reshape(1, -1), n_neighbors=6)
         recommendations= recommended_songs(indexes, distances, cur)
         
@@ -85,7 +86,7 @@ def create_app():
             arr = query_db(index, cur)
 
             # Load the model and find nearest neighbors
-            model = pickle.load(open(MODEL, 'rb'))
+            model = joblib.load(open(MODEL, 'rb'))
             distances, indexes = model.kneighbors(X=arr.reshape(1, -1), n_neighbors=6)
             recommendations= recommended_songs(indexes, distances, cur)
             
