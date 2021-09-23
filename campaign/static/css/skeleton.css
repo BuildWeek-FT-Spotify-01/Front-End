@@ -367,12 +367,12 @@ td:last-child {
 /* Top-Artist Images
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container2 {
-  display: grid;
+  display: flex;
   grid: repeat(3, 4.5vw) / auto-flow;
 }
 
 .row2 {
-  display: grid;
+  display: flex;
   grid: repeat(1, 3vw) / auto-flow;
 }
 
@@ -381,6 +381,23 @@ td:last-child {
   background: #101010;
 }
 
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .column {
+    display: flex;
+    grid: repeat(3, 4.5vw) / auto-flow;
+    width: 50%;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    display: flex;
+    grid: repeat(3, 4.5vw) / auto-flow;
+    width: 100%;
+  }
+}
 @media (orientation: portrait) {
   
   .container2 {
